@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>RESICO vs Régimen General 2026: ¿cuál me conviene? | Comparador gratis</title>
+<meta name="description" content="Calcula y compara en segundos cuánto pagarías de ISR en RESICO y en Régimen General 2026. Gratis, sin registro, 100% en tu navegador.">
+<link rel="canonical" href="https://tudominio.com/">
+<meta property="og:title" content="RESICO vs Régimen General 2026 — Comparador gratis">
+<meta property="og:description" content="Descubre en segundos qué régimen fiscal te conviene más. Cálculo basado en las tarifas SAT 2026.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="assets/img/og-cover.webp">
+<meta name="robots" content="index,follow">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700;800&family=Inter:wght@400;500;600&display=swap">
+
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>⚖️</text></svg>">
+<link rel="stylesheet" href="styles.css?v=20260101">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "RESICO vs Régimen General — Comparador",
+  "description": "Herramienta gratuita para comparar el ISR estimado entre RESICO y Régimen General para personas físicas en México, 2026.",
+  "applicationCategory": "FinanceApplication",
+  "operatingSystem": "Any",
+  "offers": { "@type": "Offer", "price": "0", "priceCurrency": "MXN" }
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {"@type":"Question","name":"¿Quién puede tributar en RESICO?","acceptedAnswer":{"@type":"Answer","text":"Personas físicas con actividad empresarial, profesional u otorgamiento de uso o goce de bienes, siempre que sus ingresos totales del ejercicio no superen $3,500,000 MXN al año, entre otras condiciones que marca la ley."}},
+    {"@type":"Question","name":"¿Por qué RESICO puede salir más caro si tengo muchas deducciones?","acceptedAnswer":{"@type":"Answer","text":"RESICO cobra un porcentaje fijo sobre tus ingresos totales sin permitir deducir gastos. Si tienes deducciones altas, el Régimen General puede ser más barato pese a su tarifa nominal mayor."}},
+    {"@type":"Question","name":"¿Esta calculadora sustituye a mi contador?","acceptedAnswer":{"@type":"Answer","text":"No. Es una estimación simplificada basada en las tarifas SAT 2026. No considera IVA, PTU, ni casos particulares de tu actividad."}},
+    {"@type":"Question","name":"¿El resultado incluye IVA?","acceptedAnswer":{"@type":"Answer","text":"No, solo compara el ISR. El IVA se calcula y paga por separado en ambos regímenes."}},
+    {"@type":"Question","name":"¿Qué pasa si mis ingresos superan el tope de RESICO?","acceptedAnswer":{"@type":"Answer","text":"Si superas $3,500,000 MXN anuales, pasas automáticamente al Régimen General a partir del mes siguiente."}}
+  ]
+}
+</script>
+</head>
+<body>
+<a class="skip-link" href="#tool">Saltar al comparador</a>
+
+<header class="site-header">
+  <a href="index.html" class="brand">⚖️ <span>RESICO<em>vs</em>General</span></a>
+  <nav class="header-nav" aria-label="Navegación principal">
+    <a href="#como-funciona">Cómo funciona</a>
+    <a href="#faq">Preguntas</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <h1>RESICO vs Régimen General: ¿cuál te conviene en 2026?</h1>
+    <p class="subtitle">Mete tus ingresos y gastos del mes y compara tu ISR estimado en ambos regímenes, al instante.</p>
+
+    <div class="tool-card" id="tool" data-state="idle">
+      <form id="calc-form" class="calc-form" novalidate>
+        <div class="field">
+          <label for="ingresos">Ingresos mensuales (antes de impuestos)</label>
+          <div class="input-money">
+            <span>$</span>
+            <input type="number" id="ingresos" name="ingresos" inputmode="decimal" min="0" step="0.01" placeholder="50,000" required>
+          </div>
+        </div>
+        <div class="field">
+          <label for="deducciones">Gastos deducibles del mes <span class="hint">(solo aplican en Régimen General)</span></label>
+          <div class="input-money">
+            <span>$</span>
+            <input type="number" id="deducciones" name="deducciones" inputmode="decimal" min="0" step="0.01" placeholder="8,000">
+          </div>
+        </div>
+        <button type="submit" class="btn-primary">Comparar regímenes</button>
+      </form>
+
+      <div class="result-zone" id="result" hidden>
+        <div class="result-grid">
+          <div class="result-card" id="card-resico">
+            <h3>RESICO</h3>
+            <p class="result-isr" id="resico-isr">$0</p>
+            <p class="result-label">ISR estimado al mes</p>
+            <p class="result-rate" id="resico-rate"></p>
+          </div>
+          <div class="result-card" id="card-general">
+            <h3>Régimen General</h3>
+            <p class="result-isr" id="general-isr">$0</p>
+            <p class="result-label">ISR estimado al mes</p>
+            <p class="result-rate" id="general-rate"></p>
+          </div>
+        </div>
+        <p class="winner" id="winner"></p>
+        <button type="button" class="btn-ghost" id="reset-btn">Hacer otro cálculo</button>
+      </div>
+
+      <div class="error-zone" id="error" hidden role="alert">
+        <p>Revisa el monto de ingresos — debe ser un número mayor a cero.</p>
+      </div>
+    </div>
+
+    <p class="privacy-badge">🔒 100% privado — tus datos se calculan en tu navegador y nunca se envían a ningún servidor.</p>
+    <p class="honesty-note">Tarifas Art. 96 LISR y tabla RESICO 2026 (SAT). Cálculo aproximado, no sustituye asesoría fiscal profesional. No incluye IVA.</p>
+  </section>
+
+  <div class="ad-slot" aria-hidden="true">
+    <span>Publicidad</span>
+    <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE -->
+  </div>
+
+  <section id="como-funciona" class="info-section">
+    <h2>Cómo funciona esta calculadora</h2>
+    <ol class="steps">
+      <li><strong>1. Escribe tus ingresos del mes.</strong> El monto bruto que facturas o recibes, antes de cualquier impuesto.</li>
+      <li><strong>2. Agrega tus gastos deducibles.</strong> Solo se usan para el cálculo de Régimen General — en RESICO no se pueden deducir gastos.</li>
+      <li><strong>3. Compara el resultado.</strong> La herramienta calcula el ISR estimado con la tarifa mensual de cada régimen y te dice cuál te conviene más este mes.</li>
+    </ol>
+
+    <h2>¿Qué es RESICO?</h2>
+    <p>El Régimen Simplificado de Confianza (RESICO) para personas físicas aplica una tasa fija —entre 1% y 2.5%— directamente sobre tus ingresos, sin permitir deducciones. Es sencillo de calcular y declarar, y suele convenir a quienes tienen pocos gastos deducibles frente a sus ingresos. Solo pueden tributar en RESICO quienes no superen $3,500,000 MXN de ingresos anuales, entre otros requisitos.</p>
+
+    <h2>¿Qué es el Régimen General (Actividad Empresarial y Profesional)?</h2>
+    <p>Aquí el ISR se calcula con una tarifa progresiva (de 1.92% a 35%) aplicada sobre tu utilidad —es decir, tus ingresos menos tus deducciones autorizadas—. Tiene más obligaciones administrativas que RESICO, pero si tu actividad tiene gastos deducibles importantes (renta, insumos, sueldos, equipo), el impuesto final puede terminar siendo menor que en RESICO.</p>
+
+    <h2>¿Cuándo conviene cada uno?</h2>
+    <p>En términos generales: si tus gastos deducibles son bajos en proporción a tus ingresos, RESICO casi siempre gana por su tasa reducida. Si tus gastos deducibles representan una parte importante de tus ingresos (típico en negocios con inventario, nómina o renta de local), el Régimen General puede salir más barato pese a su tarifa nominal más alta — porque el impuesto se calcula sobre una base menor.</p>
+  </section>
+
+  <div class="ad-slot ad-slot--incontent" aria-hidden="true">
+    <span>Publicidad</span>
+    <!-- PEGA AQUÍ TU CÓDIGO DE ADSENSE -->
+  </div>
+
+  <section id="faq" class="faq-section">
+    <h2>Preguntas frecuentes</h2>
+    <div id="faq-list" data-faqs></div>
+  </section>
+
+  <section class="more-tools">
+    <h2>Más herramientas</h2>
+    <p class="muted">Próximamente: calculadora de aguinaldo y finiquito, simulador de retenciones para plataformas digitales.</p>
+  </section>
+</main>
+
+<footer class="site-footer">
+  <p>© 2026 RESICOvsGeneral — Herramienta informativa, no es asesoría fiscal.</p>
+  <nav>
+    <a href="privacidad.html">Privacidad</a>
+    <a href="aviso-legal.html">Aviso legal</a>
+  </nav>
+</footer>
+
+<script defer src="lib/manifest.js"></script>
+<script defer src="main.js?v=20260101"></script>
+</body>
+</html>
