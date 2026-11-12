@@ -177,6 +177,9 @@ h1, h2, h3 { text-wrap: balance; line-height: 1.15; letter-spacing: -0.01em; }
 }
 .info-section h2:first-child { margin-top: 0; }
 .info-section p { color: var(--ink); opacity: .9; margin-bottom: .5rem; }
+.info-section h3 { font-family: var(--display); font-size: 1.05rem; margin: 1.3rem 0 .4rem; }
+.info-section ul:not(.steps) { list-style: disc; padding-left: 1.3rem; margin: .4rem 0 .8rem; }
+.info-section ul:not(.steps) li { margin-bottom: .35rem; }
 .steps { list-style: none; display: grid; gap: .7rem; }
 .steps li { padding: .9rem 1rem; background: var(--surface); border: 1px solid var(--border); border-radius: 10px; }
 
